@@ -45,6 +45,30 @@
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+//Strip function remove 'A', 'The', "An" at the beginning of the sentence.
+function strip(band) {
+  return band.replace(/^(A |The |An )/, '');
+}
+
+//Sort bands array. Ignore 'A', 'The', 'An' at the beginning of the sentence
+bands.sort((a,b)=>{
+  if (strip(a) < strip(b)) {
+    return -1;
+  }
+  else if (strip(a) > strip(b)) {
+    return 1;
+  }
+});
+
+
+// console.log(bands); //Array bands is sorted properly
+
+//Display the results in <li></li>
+var ulBands = document.querySelector("#bands");
+var liBands = bands.map((band) => {
+  return `<li>${band}</li>`;
+}).join('');
+ulBands.innerHTML = liBands;
 
 </script>
 
